@@ -56,6 +56,18 @@ angular.module('7minWorkout')
     return nextExercise;
   };
 
+  $scope.$watch('currentExerciseDuration', function(nVal) {
+    if (nVal == $scope.currentExercise.duration) {
+      var next = getNextExercise($scope.currentExercise);
+      if (next) {
+        startExercise(next);
+      }
+      else {
+        console.log("Workout Complete!");
+      }
+    }
+  });
+
   var createWorkout = function() {
     var workout = new WorkoutPlan({
       name: "7minWorkout",
