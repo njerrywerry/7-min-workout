@@ -43,6 +43,19 @@ angular.module('7minWorkout')
     }, 1000, $scope.currentExercise.duration);
   };
 
+  var getNextExercise = function(currentExercisePlan) {
+    var nextExercise = null;
+    if (currentExercisePlan === restExercise) {
+      nextExercise = workoutPlan.exercises.shift();
+    }
+    else {
+      if (workoutPlan.exercises.length != 0) {
+        nextExercise = restExercise;
+      }
+    }
+    return nextExercise;
+  };
+
   var createWorkout = function() {
     var workout = new WorkoutPlan({
       name: "7minWorkout",
